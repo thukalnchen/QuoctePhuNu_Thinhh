@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const images = [
   { src: '/1.jpg', rotation: 'rotate-2' },
@@ -53,33 +52,11 @@ const item = {
 }
 
 function AnimatedCaption({ oldText }: { oldText: string }) {
-  const [phase, setPhase] = useState<'old' | 'strikethrough'>('old')
-  const imageRef = useRef<HTMLDivElement>(null)
-  const isHalfVisible = useInView(imageRef, { once: true, amount: 0.5 })
-  const hasTriggered = useRef(false)
-
-  useEffect(() => {
-    if (isHalfVisible && !hasTriggered.current) {
-      hasTriggered.current = true
-      const t1 = setTimeout(() => setPhase('strikethrough'), 1500)
-      return () => clearTimeout(t1)
-    }
-  }, [isHalfVisible])
-
   return (
-    <div ref={imageRef}>
+    <div>
       <div className="pt-3 pb-1 text-center min-h-[40px] flex items-center justify-center">
-        <p className="font-serif text-xs text-gray-400 italic relative">
-          <span
-            className="transition-all duration-700"
-            style={{
-              textDecoration: phase === 'strikethrough' ? 'line-through' : 'none',
-              textDecorationColor: 'rgba(244, 114, 182, 0.8)',
-              textDecorationThickness: '2px',
-            }}
-          >
-            {oldText}
-          </span>
+        <p className="font-serif text-xs text-gray-400 italic">
+          {oldText}
         </p>
       </div>
     </div>

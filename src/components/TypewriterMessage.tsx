@@ -4,15 +4,14 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 
 const message =
-  'chúc em 3 đừng, 3 không, 3 nhớ\n\nđừng quá khắt khe với bản thân\nđừng hoài nghi chính mình và đừng từ chối tui  :>>\n\nkhông buồn nhiều quá, không áp lực quá và không một mình gánh cả thế giới nữa\n\nnhớ giữ sức khỏe, nhớ cười nhiều hơn và nhớ là có một người đáng yêu luôn chờ em'
+  'Chúc em xinh đẹp, trưởng thành hơn'
 
-const replacementText = 'Nhưng giờ nó không dành cho em nữa rồi'
+const replacementText = 'Mãi yêu em'
 
 export default function TypewriterMessage() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
-  const [isStruck, setIsStruck] = useState(false)
   const [phase, setPhase] = useState<'typing' | 'fading' | 'replaced'>('typing')
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -37,7 +36,6 @@ export default function TypewriterMessage() {
       } else {
         clearInterval(interval)
         setIsTyping(false)
-        setIsStruck(true)
         fadingTimer.current = setTimeout(() => setPhase('fading'), 3000)
         replacedTimer.current = setTimeout(() => setPhase('replaced'), 4000)
       }
@@ -80,12 +78,7 @@ export default function TypewriterMessage() {
             transition={{ duration: 0.8, ease: 'easeInOut' }}
           >
             <p
-              className="font-serif text-lg text-rose-800/80 leading-relaxed text-center italic whitespace-pre-line transition-all duration-700"
-              style={{
-                textDecoration: isStruck ? 'line-through' : 'none',
-                textDecorationColor: 'rgba(244, 114, 182, 0.8)',
-                textDecorationThickness: '2px',
-              }}
+              className="font-serif text-lg text-rose-800/80 leading-relaxed text-center italic whitespace-pre-line"
             >
               &ldquo;{displayedText}&rdquo;
               {isTyping && <span className="typewriter-cursor" />}
