@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 const message =
   'chúc em 3 đừng, 3 không, 3 nhớ\n\nđừng quá khắt khe với bản thân\nđừng hoài nghi chính mình và đừng từ chối tui  :>>\n\nkhông buồn nhiều quá, không áp lực quá và không một mình gánh cả thế giới nữa\n\nnhớ giữ sức khỏe, nhớ cười nhiều hơn và nhớ là có một người đáng yêu luôn chờ em'
 
-const replacementText = 'Nhưng giờ nó không dành cho m nữa rồi'
+const replacementText = 'Nhưng giờ nó không dành cho em nữa rồi'
 
 export default function TypewriterMessage() {
   const [displayedText, setDisplayedText] = useState('')
@@ -46,8 +46,8 @@ export default function TypewriterMessage() {
     if (phase !== 'showing') return
 
     const t1 = setTimeout(() => setPhase('strikethrough'), 0)
-    const t2 = setTimeout(() => setPhase('fading'), 1500)
-    const t3 = setTimeout(() => setPhase('replaced'), 2500)
+    const t2 = setTimeout(() => setPhase('fading'), 3000)
+    const t3 = setTimeout(() => setPhase('replaced'), 4000)
 
     return () => {
       clearTimeout(t1)
