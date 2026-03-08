@@ -85,7 +85,7 @@ export default function HeartBurst() {
       >
         <span className="flex items-center gap-2">
           <Heart size={18} className="fill-white" />
-          Chạm vào đây
+          Chạm vào anhhh
           <Heart size={18} className="fill-white" />
         </span>
       </motion.button>
@@ -107,10 +107,10 @@ export default function HeartBurst() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {clickCount === 1 && '💕 Em từng là tất cả...'}
-              {clickCount === 2 && ' Nhưng giờ thì...'}
-              {clickCount >= 3 && ' Thích chạm thế cơ à. đừng chạm nữa, disgusting !'}
-              {clickCount >= 4 && ' Thích chạm thế cơ à. đừng chạm nữa !'}
+              {clickCount === 1 && '💕 Em là tất cả của anh...'}
+              {clickCount === 2 && '💕 Yêu em nhiều '}
+              {clickCount >= 3 && '💕 Thích chạm thế cơ à !'}
+              {clickCount >= 4 && '💕 Thích chạm thế cơ à !'}
             </motion.p>
 
             {/* Floating "chạm lần nữa đi" hint - only for click 1 and 2 */}

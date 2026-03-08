@@ -155,7 +155,7 @@ export default function LockScreen({ onUnlock, onFirstInteraction }: LockScreenP
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        ✧ gợi ý: 0803 ✧
+        ✧ gợi ý: 0405 ✧
       </motion.p>
     </div>
   )
