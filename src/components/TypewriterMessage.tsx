@@ -12,7 +12,8 @@ export default function TypewriterMessage() {
   const [displayedText, setDisplayedText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
-  const [phase, setPhase] = useState<'typing' | 'showing' | 'strikethrough' | 'fading' | 'replaced'>('typing')
+  const [isStruck, setIsStruck] = useState(false)
+  const [phase, setPhase] = useState<'typing' | 'showing' | 'fading' | 'replaced'>('typing')
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
 
@@ -33,6 +34,7 @@ export default function TypewriterMessage() {
         index++
       } else {
         setIsTyping(false)
+        setIsStruck(true)
         setPhase('showing')
         clearInterval(interval)
       }
@@ -41,18 +43,15 @@ export default function TypewriterMessage() {
     return () => clearInterval(interval)
   }, [isTyping])
 
-  // After 20s of showing the full message, start strikethrough
   useEffect(() => {
     if (phase !== 'showing') return
 
-    const t1 = setTimeout(() => setPhase('strikethrough'), 0)
-    const t2 = setTimeout(() => setPhase('fading'), 3000)
-    const t3 = setTimeout(() => setPhase('replaced'), 4000)
+    const t1 = setTimeout(() => setPhase('fading'), 3000)
+    const t2 = setTimeout(() => setPhase('replaced'), 4000)
 
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
-      clearTimeout(t3)
     }
   }, [phase])
 
@@ -84,7 +83,7 @@ export default function TypewriterMessage() {
             <p
               className="font-serif text-lg text-rose-800/80 leading-relaxed text-center italic whitespace-pre-line transition-all duration-700"
               style={{
-                textDecoration: phase === 'strikethrough' || phase === 'fading' ? 'line-through' : 'none',
+                textDecoration: isStruck ? 'line-through' : 'none',
                 textDecorationColor: 'rgba(244, 114, 182, 0.8)',
                 textDecorationThickness: '2px',
               }}
