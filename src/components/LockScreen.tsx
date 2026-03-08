@@ -4,7 +4,7 @@ import { useState, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Delete } from 'lucide-react'
 
-const CORRECT_PIN = '0803'
+const CORRECT_PIN = '0405'
 const PIN_LENGTH = 4
 
 interface LockScreenProps {
